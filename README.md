@@ -1,4 +1,3 @@
-<h1 align="center">Salut 👋, moi c'est Bance B</h1>
 <h3 align="center">🎓 Étudiant en Informatique | 📊 Passionné par la Data | 🤖 Futur Expert IA</h3>
 
 <p align="center">
