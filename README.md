@@ -1,124 +1,22 @@
-<h3 align="center">🎓 Étudiant en Informatique | 📊 Passionné par la Data | 🤖 Futur Expert IA</h3>
+# Portfolio - BANCE BOUKARE
+## Étudiant en Big Data & Intelligence Artificielle | Aspirant Data Scientist
 
-<p align="center">
-Développeur orienté analyse de données, machine learning et intelligence artificielle.  
-J’aime transformer les données en décisions utiles et créer des solutions intelligentes.
-</p>
+Bienvenue sur mon portfolio. Je suis **BANCE BOUKARE**, passionné par la transformation des données en décisions stratégiques. Actuellement en Master 2, je me spécialise dans la modélisation prédictive et le Machine Learning.
 
 ---
 
-## 🚀 À propos de moi
-
-- 🎓 Étudiant en informatique  
-- 📍 Côte d’Ivoire  
-- 📊 Intéressé par la Data Science & Data Analysis  
-- 🤖 Passionné de Machine Learning & IA  
-- 📈 J’aime résoudre des problèmes concrets avec les données  
-- 🌱 En progression constante sur Python, SQL, statistiques et visualisation  
+## 📂 Sommaire
+* [**À propos de moi**](about.md) - Mon parcours académique et mes aspirations.
+* [**Ce que je fais**](skills.md) - Mes compétences techniques et domaines d'expertise.
+* [**Expériences clés**](experience.md) - Mon parcours en entreprise et gestion de projet.
+* [**Projets Data**](projects.md) - Réalisations concrètes en Machine Learning et Analyse.
+* [**Formations & Certifications**](education.md) - Mon cursus et mes apprentissages continus.
 
 ---
 
-## 🛠️ Stack Technique
+## 🔗 Liens Essentiels
+* [cite_start]**GitHub**: [github.com/Bance B](https://github.com/BanceB) [cite: 4]
+* [cite_start]**Email**: banceboukare0700@gmail.com [cite: 2]
+* [cite_start]**Localisation**: Abidjan, Côte d'Ivoire [cite: 2, 3]
 
-### Langages
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-005C84?style=for-the-badge&logo=database&logoColor=white)
-
-### Data / IA
-![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas)
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy)
-![Scikit Learn](https://img.shields.io/badge/ScikitLearn-F7931E?style=for-the-badge&logo=scikitlearn)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-black?style=for-the-badge)
-
-### Outils
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git)
-![GitHub](https://img.shields.io/badge/GitHub-121011?style=for-the-badge&logo=github)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter)
-![VS Code](https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=visualstudiocode)
-
----
-
-## 📌 Projets en Vedette
-
-### 📊 Analyse des ventes E-commerce
-🔗 https://github.com/BanceB/ecommerce-sales-analysis
-
-Analyse complète des ventes :
-- KPI commerciaux
-- produits les plus rentables
-- tendances mensuelles
-- recommandations business
-
-**Technos :** Python, Pandas, Matplotlib
-
----
-
-### 🏠 Prédiction des prix immobiliers
-🔗 https://github.com/BanceB/house-price-prediction
-
-Modèle de Machine Learning pour estimer les prix des maisons.
-
-- nettoyage des données
-- feature engineering
-- entraînement modèle
-- évaluation performance
-
-**Technos :** Python, Scikit-Learn
-
----
-
-### 📈 Dashboard RH / Employés
-🔗 https://github.com/BanceB/hr-dashboard
-
-Visualisation RH :
-
-- taux de départ
-- ancienneté
-- répartition équipes
-- indicateurs RH
-
-**Technos :** Power BI / Excel / SQL
-
----
-
-### 🤖 Classification Machine Learning
-🔗 https://github.com/BanceB/ml-classification-project
-
-Projet de classification supervisée :
-
-- preprocessing
-- comparaison modèles
-- accuracy / recall / F1-score
-
-**Technos :** Python, Scikit-Learn
-
----
-
-## 📚 Certifications
-
-🎓 Basic Statistics — University of Amsterdam
-
----
-
-## 📈 Objectif 2026
-
-Devenir un professionnel reconnu en :
-
-- Data Analysis  
-- Data Science  
-- Intelligence Artificielle  
-- Business Intelligence  
-
----
-
-## 📫 Me contacter
-
-- GitHub : https://github.com/BanceB
-- LinkedIn : À ajouter
-- Email : À ajouter
-
----
-
-## ⚡ Citation
-
-> "Les données racontent une histoire. Mon travail est de la révéler."
+> "Ma mission est de mettre la donnée au service de la performance et de l'aide à la décision."
