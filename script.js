@@ -1,0 +1,462 @@
+/**
+ * ============================================================================
+ * PORTFOLIO JAVASCRIPT
+ * Gestion des onglets (tabs), carrousels et animation du réseau de neurones
+ * ============================================================================
+ */
+
+/**
+ * ============================================================================
+ * DICTIONNAIRES DES TECHNOLOGIES
+ * ============================================================================
+ */
+
+// Dictionnaire des langages de programmation
+const LANGAGES = {
+    'Python': 'fab fa-python',
+    'JavaScript': 'fab fa-js',
+    'R': 'fas fa-code',
+    'Java': 'fab fa-java',
+    'HTML5': 'fab fa-html5',
+    'CSS3': 'fab fa-css3-alt',
+    'C++': 'fab fa-cuttlefish',
+    'SQL': 'fas fa-database'
+};
+
+// Dictionnaire des librairies et frameworks
+const LIBRAIRIES = {
+    'Pandas': 'fas fa-database',
+    'NumPy': 'fas fa-chart-line',
+    'TensorFlow': 'fas fa-brain',
+    'Scikit-learn': 'fas fa-cube',
+    'PyTorch': 'fas fa-network-wired',
+    'Matplotlib': 'fas fa-chart-bar',
+    'Keras': 'fas fa-robot',
+    'Flask': 'fas fa-server'
+};
+
+// Dictionnaire des IDEs et outils
+const IDES = {
+    'VS Code': 'fas fa-code',
+    'Jupyter Notebook': 'fas fa-terminal',
+    'PyCharm': 'fas fa-laptop-code',
+    'Google Colab': 'fas fa-flask',
+    'Git': 'fas fa-git-alt',
+    'Docker': 'fab fa-docker',
+    'Anaconda': 'fas fa-cube',
+    'Postman': 'fas fa-envelope'
+};
+
+/**
+ * Dictionnaire des projets par catégorie
+ * Structure: { titre, description, image }
+ */
+const PROJETS = {
+    'data-analysis': [
+        {
+            titre: 'Analyse de données Covid-19',
+            description: 'Exploration et visualisation avancée des données pandémiques',
+            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Covid'
+        },
+        {
+            titre: 'Analyse Financière',
+            description: 'Étude des séries temporelles et tendances du marché',
+            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Financiere'
+        },
+        {
+            titre: 'Analytics E-commerce',
+            description: 'Comportement client et optimisation des conversions',
+            image: 'https://via.placeholder.com/350x200.png?text=Statistiques+E-commerce'
+        }
+    ],
+    'ml': [
+        {
+            titre: 'Prédiction de Churn',
+            description: 'Modélisation de l\'attrition client avec Scikit-learn',
+            image: 'https://via.placeholder.com/350x200.png?text=Prediction+Churn'
+        },
+        {
+            titre: 'Classification d\'Images',
+            description: 'Reconnaissance d\'images avec Random Forest et XGBoost',
+            image: 'https://via.placeholder.com/350x200.png?text=Classification+Images'
+        },
+        {
+            titre: 'Clustering de Données',
+            description: 'Segmentation client avec K-means et DBSCAN',
+            image: 'https://via.placeholder.com/350x200.png?text=Clustering+Donnees'
+        }
+    ],
+    'deep-learning': [
+        {
+            titre: 'Détection d\'Objets',
+            description: 'YOLOv5 pour la détection en temps réel',
+            image: 'https://via.placeholder.com/350x200.png?text=Detection+Objets'
+        },
+        {
+            titre: 'Génération de Texte RNN',
+            description: 'LSTM pour la génération automatique de contenu',
+            image: 'https://via.placeholder.com/350x200.png?text=RNN+Generation'
+        },
+        {
+            titre: 'Computer Vision CNN',
+            description: 'ResNet pour la classification d\'images avancée',
+            image: 'https://via.placeholder.com/350x200.png?text=CNN+Vision'
+        }
+    ],
+    'ia-gen': [
+        {
+            titre: 'Chatbot IA Conversationnel',
+            description: 'Assistant basé sur GPT et NLP avancé',
+            image: 'https://via.placeholder.com/350x200.png?text=Chatbot+IA'
+        },
+        {
+            titre: 'Générateur d\'Images IA',
+            description: 'Stable Diffusion pour création d\'images génératives',
+            image: 'https://via.placeholder.com/350x200.png?text=Generateur+Images'
+        },
+        {
+            titre: 'Analyse de Sentiments IA',
+            description: 'NLP pour analyse des avis clients avec transformers',
+            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Sentiments'
+        }
+    ]
+};
+
+/**
+ * Initialisation au chargement du DOM
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    // Générer le contenu des onglets à partir des dictionnaires
+    generateTechContent();
+    
+    // Générer les carrousels de projets
+    generateProjectCarousels();
+    
+    // Initialiser les onglets Technologies
+    initTabs();
+    
+    // Initialiser les carrousels Projets
+    initProjectCarousels();
+    
+    // Initialiser l'animation du fond réseau de neurones
+    initNeuralNetworkBackground();
+});
+
+/**
+ * ============================================================================
+ * GESTION DES ONGLETS TECHNOLOGIES
+ * ============================================================================
+ */
+
+/**
+ * Génère dynamiquement le contenu des onglets Technologies à partir des dictionnaires
+ * Cette fonction crée le HTML pour chaque tech-grid en bouclant sur les dictionnaires
+ */
+function generateTechContent() {
+    // Mapping des onglets avec leurs dictionnaires respectifs
+    const tabsData = {
+        'langages': LANGAGES,
+        'librairies': LIBRAIRIES,
+        'ides': IDES
+    };
+    
+    // Parcourir chaque onglet et générer le contenu
+    Object.entries(tabsData).forEach(([tabId, techDict]) => {
+        const tabElement = document.getElementById(tabId);
+        
+        if (tabElement) {
+            // Récupérer ou créer le tech-grid
+            let techGrid = tabElement.querySelector('.tech-grid');
+            if (!techGrid) {
+                techGrid = document.createElement('div');
+                techGrid.className = 'tech-grid';
+                tabElement.appendChild(techGrid);
+            }
+            
+            // Vider le contenu existant
+            techGrid.innerHTML = '';
+            
+            // Boucle pour créer les éléments technologie
+            Object.entries(techDict).forEach(([name, icon]) => {
+                const techItem = document.createElement('div');
+                techItem.className = 'tech-item';
+                techItem.innerHTML = `
+                    <i class="${icon}"></i>
+                    <span>${name}</span>
+                `;
+                techGrid.appendChild(techItem);
+            });
+        }
+    });
+}
+
+/**
+ * Initialise les onglets interactifs de la section Technologies
+ */
+function initTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    // Ajouter un écouteur d'événement sur chaque bouton d'onglet
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const tabName = this.getAttribute('data-tab');
+            
+            // Désactiver tous les onglets
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Activer l'onglet cliqué
+            this.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        });
+    });
+}
+
+/**
+ * ============================================================================
+ * GESTION DES CARROUSELS DE PROJETS
+ * ============================================================================
+ */
+
+/**
+ * Génère dynamiquement les carrousels de projets à partir du dictionnaire PROJETS
+ * Cette fonction crée le HTML pour chaque carousel en bouclant sur les catégories
+ */
+function generateProjectCarousels() {
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    
+    if (carouselWrapper) {
+        // Vider le contenu existant
+        carouselWrapper.innerHTML = '';
+        
+        // Boucle sur chaque catégorie de projets
+        Object.entries(PROJETS).forEach(([categoryId, projects]) => {
+            // Créer le conteneur du carousel
+            const carousel = document.createElement('div');
+            carousel.className = categoryId === 'data-analysis' ? 'carousel active' : 'carousel';
+            carousel.id = categoryId;
+            
+            // Créer le conteneur des cartes
+            const carouselContainer = document.createElement('div');
+            carouselContainer.className = 'carousel-container';
+            
+            // Boucle sur chaque projet de la catégorie
+            projects.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.className = 'project-card';
+                projectCard.innerHTML = `
+                    <div class="card-image">
+                        <img src="${project.image}" alt="${project.titre}">
+                    </div>
+                    <div class="card-body">
+                        <h3>${project.titre}</h3>
+                        <p>${project.description}</p>
+                        <a href="#" class="btn btn-primary">Voir le projet</a>
+                    </div>
+                `;
+                carouselContainer.appendChild(projectCard);
+            });
+            
+            carousel.appendChild(carouselContainer);
+            carouselWrapper.appendChild(carousel);
+        });
+    }
+}
+
+/**
+ * Initialise les carrousels horizontaux de la section Projets
+ */
+function initProjectCarousels() {
+    const categoryButtons = document.querySelectorAll('.project-category-btn');
+    const carousels = document.querySelectorAll('.carousel');
+    
+    // Ajouter un écouteur d'événement sur chaque bouton de catégorie
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const categoryId = this.getAttribute('data-category');
+            
+            // Désactiver tous les carrousels
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            carousels.forEach(carousel => carousel.classList.remove('active'));
+            
+            // Activer le carrousel cliqué
+            this.classList.add('active');
+            document.getElementById(categoryId).classList.add('active');
+        });
+    });
+    
+    // Initialiser le défilement fluide des carrousels
+    setupCarouselScrolling();
+}
+
+/**
+ * Configure le défilement fluide pour les carrousels avec clavier et souris
+ */
+function setupCarouselScrolling() {
+    const carouselContainers = document.querySelectorAll('.carousel-container');
+    
+    carouselContainers.forEach(container => {
+        // Support du défilement à la roulette horizontale
+        container.addEventListener('wheel', (e) => {
+            if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+                // Défilement vertical normal
+                return;
+            }
+            e.preventDefault();
+            container.scrollLeft += e.deltaY;
+        });
+    });
+}
+
+/**
+ * ============================================================================
+ * ANIMATION DU FOND RÉSEAU DE NEURONES
+ * ============================================================================
+ */
+
+/**
+ * Initialise et anime le fond avec un réseau de neurones utilisant Canvas
+ */
+function initNeuralNetworkBackground() {
+    const canvas = document.getElementById('neural-network-bg');
+    const ctx = canvas.getContext('2d');
+    
+    // Configuration du canvas
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    
+    // Écouter les changements de taille de fenêtre
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Configuration des nœuds du réseau
+    const config = {
+        nodeCount: 40,           // Nombre de nœuds/neurones
+        connectionDistance: 200, // Distance max pour lier deux nœuds
+        nodeRadius: 2.5,        // Rayon des nœuds
+        nodeColor: '#1de9b6',   // Couleur primaire (vert émeraude)
+        linkColor: 'rgba(124, 77, 255, 0.25)', // Couleur des liaisons (violet)
+        nodeSpeed: 0.5,         // Vitesse de déplacement des nœuds
+    };
+    
+    // Tableau contenant tous les nœuds
+    let nodes = [];
+    
+    /**
+     * Crée les nœuds initiaux du réseau
+     */
+    function createNodes() {
+        nodes = [];
+        for (let i = 0; i < config.nodeCount; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                // Vitesse aléatoire entre -speed et +speed
+                vx: (Math.random() - 0.5) * config.nodeSpeed,
+                vy: (Math.random() - 0.5) * config.nodeSpeed,
+            });
+        }
+    }
+    
+    /**
+     * Dessine les liaisons entre nœuds proches
+     */
+    function drawConnections() {
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                // Si la distance est inférieure au seuil, tracer une ligne
+                if (distance < config.connectionDistance) {
+                    // Opacité inversement proportionnelle à la distance (pour l'effet de proximité)
+                    const opacity = 1 - (distance / config.connectionDistance);
+                    ctx.strokeStyle = `rgba(124, 77, 255, ${opacity * 0.3})`;
+                    ctx.lineWidth = 1.2;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    /**
+     * Dessine tous les nœuds
+     */
+    function drawNodes() {
+        for (let node of nodes) {
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, config.nodeRadius, 0, 2 * Math.PI);
+            ctx.fillStyle = config.nodeColor;
+            // Effet d'ombre lumineuse
+            ctx.shadowColor = 'rgba(29, 233, 182, 0.5)';
+            ctx.shadowBlur = 12;
+            ctx.fill();
+            ctx.shadowBlur = 0; // Réinitialiser l'ombre
+        }
+    }
+    
+    /**
+     * Met à jour la position des nœuds pour créer le mouvement
+     */
+    function updateNodes() {
+        for (let node of nodes) {
+            node.x += node.vx;
+            node.y += node.vy;
+            
+            // Rebondir sur les bords
+            if (node.x < 0 || node.x > canvas.width) {
+                node.vx *= -1;
+                node.x = Math.max(0, Math.min(canvas.width, node.x));
+            }
+            if (node.y < 0 || node.y > canvas.height) {
+                node.vy *= -1;
+                node.y = Math.max(0, Math.min(canvas.height, node.y));
+            }
+        }
+    }
+    
+    /**
+     * Fonction d'animation principale (boucle d'animation)
+     */
+    function animate() {
+        // Effacer le canvas
+        ctx.fillStyle = 'rgba(15, 20, 25, 0)'; // Transparent
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Dessiner et mettre à jour
+        drawConnections();
+        drawNodes();
+        updateNodes();
+        
+        // Continuer l'animation
+        requestAnimationFrame(animate);
+    }
+    
+    // Initialiser les nœuds et lancer l'animation
+    createNodes();
+    animate();
+}
+
+/**
+ * ============================================================================
+ * UTILITAIRES
+ * ============================================================================
+ */
+
+/**
+ * Smooth scroll support (bonus)
+ * Quelques navigateurs n'ont pas le support du scroll-behavior en CSS
+ */
+if (!window.CSS || !window.CSS.supports || !window.CSS.supports('scroll-behavior', 'smooth')) {
+    // Polyfill pour les anciens navigateurs
+    document.documentElement.style.scrollBehavior = 'auto';
+}
+
+console.log('✓ Portfolio initialisé avec succès!');

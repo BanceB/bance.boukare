@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - BANCE BOUKARE | Data Scientist Junior</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Fond animé avec réseau de neurones -->
+    <canvas id="neural-network-bg"></canvas>
+
+
+
+
+    
+    <!-- Header fixe -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="header-title">Bienvenue sur mon portfolio</h1>
+        </div>
+    </header>
+
+
+
+
+
+    <main class="main-content">
+        <!-- Section Présentation -->
+        <section id="presentation" class="section presentation-section">
+            <div class="presentation-container">
+                <div class="profile-frame">
+                    <img src="img.jpeg" alt="Photo de profil" class="profile-image">
+                </div>
+                <div class="presentation-text">
+                    <h2>Je suis <span class="highlight">BANCE BOUKARE</span></h2>
+                    <p class="subtitle">Data Scientist Junior</p>
+                    <p class="description">disponible sur : 
+                        <div class="social-links">
+                            <a href="https://github.com" target="_blank" class="social-icon github" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="social-icon linkedin" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://kaggle.com" target="_blank" class="social-icon kaggle" title="Kaggle">
+                                <i class="fab fa-kaggle"></i>
+                            </a>
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+        <!-- Section À Propos -->
+        <section id="about" class="section about-section">
+            <h2 class="section-title">À propos</h2>
+            <div class="about-card">
+                <div class="card-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="card-content">
+                    <p>
+                        Étudiant en Big Data et Intelligence Artificielle, passionné par la Data Science et l’IA générative, je m’intéresse à la transformation de la donnée en solutions intelligentes.
+                    </p>
+                    <p>
+                        Mon objectif est de maîtriser la data et l’IA pour résoudre des problèmes concrets et créer des applications à fort impact pour la société.
+                    </p>
+                    <p>
+                        Curieux et rigoureux, je développe mes compétences à travers des projets pratiques orientés vers l’expérimentation et l’application réelle des données.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- Section Technologies -->
+        <section id="technologies" class="section technologies-section">
+            <h2 class="section-title">Technologies</h2>
+            
+            <!-- Onglets interactifs -->
+            <div class="tabs-container">
+                <div class="tabs-buttons">
+                    <button class="tab-btn active" data-tab="langages">
+                        <i class="fas fa-code"></i> Langages
+                    </button>
+                    <button class="tab-btn" data-tab="librairies">
+                        <i class="fas fa-boxes"></i> Librairies
+                    </button>
+                    <button class="tab-btn" data-tab="ides">
+                        <i class="fas fa-laptop-code"></i> IDEs
+                    </button>
+                </div>
+
+                <!-- Contenu des onglets -->
+                <div class="tabs-content">
+                    <!-- Langages - Contenu généré par JavaScript -->
+                    <div id="langages" class="tab-content active"></div>
+
+                    <!-- Librairies - Contenu généré par JavaScript -->
+                    <div id="librairies" class="tab-content"></div>
+
+                    <!-- IDEs - Contenu généré par JavaScript -->
+                    <div id="ides" class="tab-content"></div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- Section Projets -->
+        <section id="projects" class="section projects-section">
+            <h2 class="section-title">Projets</h2>
+            
+            <!-- Catégories de projets -->
+            <div class="project-categories">
+                <button class="project-category-btn active" data-category="data-analysis">
+                    Data Analysis
+                </button>
+                <button class="project-category-btn" data-category="ml">
+                    Machine Learning
+                </button>
+                <button class="project-category-btn" data-category="deep-learning">
+                    Deep Learning
+                </button>
+                <button class="project-category-btn" data-category="ia-gen">
+                    IA Générative
+                </button>
+            </div>
+
+
+            <!-- Carrousels horizontaux - Contenu généré par JavaScript -->
+            <div class="carousel-wrapper"></div>
+        </section>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Pied de page / Contact -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com" target="_blank" class="social-icon github" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon linkedin" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://kaggle.com" target="_blank" class="social-icon kaggle" title="Kaggle">
+                    <i class="fab fa-kaggle"></i>
+                </a>
+            </div>
+            <p class="footer-text">&copy; 2026 BANCE BOUKARE | Data Scientist Junior</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

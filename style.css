@@ -1,0 +1,745 @@
+/* ============================================================================
+   PORTFOLIO STYLE - Design moderne, épuré et responsive
+   Palette: Bleu nuit, Vert émeraude, Violet sombre
+   ========================================================================== */
+
+/* Variables CSS */
+:root {
+    --primary-dark: #0f1419;
+    --secondary-dark: #1a1f2e;
+    --accent-primary: #1de9b6;
+    --accent-secondary: #7c4dff;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --border-color: #2a3f5f;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', 'Roboto', sans-serif;
+    background: var(--primary-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Canvas - Fond réseau de neurones */
+#neural-network-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Header fixe */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--secondary-dark) 0%, rgba(124, 77, 255, 0.1) 100%);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    box-shadow: 0 4px 20px rgba(29, 233, 182, 0.05);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+/* Main content */
+.main-content {
+    position: relative;
+    z-index: 1;
+    margin-top: 80px;
+}
+
+/* Sections générales */
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+}
+
+/* ============================================================================
+   PRÉSENTATION
+   ========================================================================== */
+
+.presentation-section {
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+}
+
+.presentation-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.profile-frame {
+    width: 220px;
+    height: 220px;
+    border: 3px solid var(--accent-primary);
+    border-radius: 50%;
+    padding: 10px;
+    background: var(--secondary-dark);
+    box-shadow: 
+        0 0 30px rgba(29, 233, 182, 0.3),
+        inset 0 0 20px rgba(29, 233, 182, 0.1);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.presentation-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.presentation-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.presentation-text h2 .highlight {
+    color: var(--accent-primary);
+    text-shadow: 0 0 10px rgba(29, 233, 182, 0.3);
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-secondary);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* ============================================================================
+   À PROPOS
+   ========================================================================== */
+
+.about-card {
+    background: linear-gradient(135deg, rgba(29, 233, 182, 0.05) 0%, rgba(124, 77, 255, 0.05) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 3rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    box-shadow: 0 8px 32px rgba(29, 233, 182, 0.1);
+    transition: var(--transition);
+}
+
+.about-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 40px rgba(29, 233, 182, 0.15);
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--accent-primary);
+    flex-shrink: 0;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: drop-shadow(0 0 0 rgba(29, 233, 182, 0));
+    }
+    50% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 10px rgba(29, 233, 182, 0.5));
+    }
+}
+
+.card-content p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.card-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* ============================================================================
+   TECHNOLOGIES
+   ========================================================================== */
+
+.technologies-section {
+    background: linear-gradient(135deg, rgba(124, 77, 255, 0.03) 0%, rgba(29, 233, 182, 0.03) 100%);
+}
+
+.tabs-container {
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tabs-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: none;
+    border: 2px solid var(--accent-primary);
+    color: var(--accent-primary);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tab-btn:hover,
+.tab-btn.active {
+    background: var(--accent-primary);
+    color: var(--primary-dark);
+    box-shadow: 0 0 20px rgba(29, 233, 182, 0.4);
+    transform: translateY(-2px);
+}
+
+.tabs-content {
+    min-height: 250px;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.tech-item {
+    background: var(--secondary-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.tech-item i {
+    font-size: 2.5rem;
+    color: var(--accent-secondary);
+}
+
+.tech-item span {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.tech-item:hover {
+    background: linear-gradient(135deg, rgba(29, 233, 182, 0.1) 0%, rgba(124, 77, 255, 0.1) 100%);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 24px rgba(29, 233, 182, 0.15);
+    transform: translateY(-8px) scale(1.05);
+}
+
+.tech-item:hover i {
+    color: var(--accent-primary);
+    animation: spin 0.6s ease-out;
+}
+
+@keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+/* ============================================================================
+   PROJETS
+   ========================================================================== */
+
+.projects-section {
+    background: linear-gradient(135deg, rgba(29, 233, 182, 0.03) 0%, rgba(124, 77, 255, 0.03) 100%);
+}
+
+.project-categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.project-category-btn {
+    background: none;
+    border: 2px solid var(--accent-secondary);
+    color: var(--accent-secondary);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: 'Poppins', sans-serif;
+}
+
+.project-category-btn:hover,
+.project-category-btn.active {
+    background: var(--accent-secondary);
+    color: var(--primary-dark);
+    box-shadow: 0 0 20px rgba(124, 77, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.carousel-wrapper {
+    position: relative;
+    min-height: 400px;
+}
+
+.carousel {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.carousel.active {
+    display: block;
+}
+
+.carousel-container {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+}
+
+.carousel-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel-container::-webkit-scrollbar-track {
+    background: var(--secondary-dark);
+    border-radius: 10px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+    background: var(--accent-primary);
+    border-radius: 10px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-secondary);
+}
+
+.project-card {
+    background: var(--secondary-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    min-width: 320px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 12px 30px rgba(29, 233, 182, 0.2);
+    transform: translateY(-10px);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.project-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.card-body p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+    color: var(--primary-dark);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(29, 233, 182, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ============================================================================
+   FOOTER
+   ========================================================================== */
+
+.footer {
+    background: var(--secondary-dark);
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-icon {
+    font-size: 2rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+.social-icon.github {
+    color: #e0e0e0;
+}
+
+.social-icon.linkedin {
+    color: #0a66c2;
+}
+
+.social-icon.kaggle {
+    color: #20beff;
+}
+
+.social-icon:hover {
+    transform: translateY(-8px) rotate(10deg) scale(1.2);
+    filter: drop-shadow(0 8px 16px rgba(29, 233, 182, 0.3));
+}
+
+.footer-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 1.3rem;
+    }
+
+    .section {
+        padding: 2.5rem 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .presentation-container {
+        gap: 1.5rem;
+    }
+
+    .profile-frame {
+        width: 150px;
+        height: 150px;
+    }
+
+    .presentation-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .about-card {
+        padding: 1.5rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .tabs-buttons {
+        gap: 1rem;
+    }
+
+    .tab-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1rem;
+    }
+
+    .tech-item {
+        padding: 1rem;
+    }
+
+    .tech-item i {
+        font-size: 2rem;
+    }
+
+    .project-card {
+        min-width: 280px;
+    }
+
+    .social-links {
+        gap: 1.5rem;
+    }
+
+    .social-icon {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-title {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .presentation-text h2 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .description {
+        font-size: 0.95rem;
+    }
+
+    .about-card {
+        padding: 1rem;
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+    }
+
+    .tabs-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .tab-btn {
+        width: 100%;
+        padding: 0.7rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-categories {
+        gap: 0.5rem;
+    }
+
+    .project-category-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .carousel-container {
+        gap: 1rem;
+    }
+
+    .project-card {
+        min-width: 90vw;
+    }
+
+    .card-image {
+        height: 150px;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-body h3 {
+        font-size: 1.1rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-icon {
+        font-size: 1.5rem;
+    }
+
+    .footer-text {
+        font-size: 0.85rem;
+    }
+}
