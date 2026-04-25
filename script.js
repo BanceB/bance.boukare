@@ -49,75 +49,87 @@ const IDES = {
 
 /**
  * Dictionnaire des projets par catégorie
- * Structure: { titre, description, image }
+ * Structure: { titre, description, image, lien }
  */
 const PROJETS = {
     'data-analysis': [
         {
             titre: 'Analyse de données Covid-19',
             description: 'Exploration et visualisation avancée des données pandémiques',
-            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Covid'
+            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Covid',
+            lien: 'https://github.com/example/covid-analysis'
         },
         {
             titre: 'Analyse Financière',
             description: 'Étude des séries temporelles et tendances du marché',
-            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Financiere'
+            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Financiere',
+            lien: 'https://github.com/example/financial-analysis'
         },
         {
             titre: 'Analytics E-commerce',
             description: 'Comportement client et optimisation des conversions',
-            image: 'https://via.placeholder.com/350x200.png?text=Statistiques+E-commerce'
+            image: 'https://via.placeholder.com/350x200.png?text=Statistiques+E-commerce',
+            lien: 'https://github.com/example/ecommerce-analytics'
         }
     ],
     'ml': [
         {
             titre: 'Prédiction de Churn',
             description: 'Modélisation de l\'attrition client avec Scikit-learn',
-            image: 'https://via.placeholder.com/350x200.png?text=Prediction+Churn'
+            image: 'https://via.placeholder.com/350x200.png?text=Prediction+Churn',
+            lien: 'https://github.com/example/churn-prediction'
         },
         {
             titre: 'Classification d\'Images',
             description: 'Reconnaissance d\'images avec Random Forest et XGBoost',
-            image: 'https://via.placeholder.com/350x200.png?text=Classification+Images'
+            image: 'https://via.placeholder.com/350x200.png?text=Classification+Images',
+            lien: 'https://github.com/example/image-classification'
         },
         {
             titre: 'Clustering de Données',
             description: 'Segmentation client avec K-means et DBSCAN',
-            image: 'https://via.placeholder.com/350x200.png?text=Clustering+Donnees'
+            image: 'https://via.placeholder.com/350x200.png?text=Clustering+Donnees',
+            lien: 'https://github.com/example/clustering'
         }
     ],
     'deep-learning': [
         {
             titre: 'Détection d\'Objets',
             description: 'YOLOv5 pour la détection en temps réel',
-            image: 'https://via.placeholder.com/350x200.png?text=Detection+Objets'
+            image: 'https://via.placeholder.com/350x200.png?text=Detection+Objets',
+            lien: 'https://github.com/example/object-detection'
         },
         {
             titre: 'Génération de Texte RNN',
             description: 'LSTM pour la génération automatique de contenu',
-            image: 'https://via.placeholder.com/350x200.png?text=RNN+Generation'
+            image: 'https://via.placeholder.com/350x200.png?text=RNN+Generation',
+            lien: 'https://github.com/example/text-generation'
         },
         {
             titre: 'Computer Vision CNN',
             description: 'ResNet pour la classification d\'images avancée',
-            image: 'https://via.placeholder.com/350x200.png?text=CNN+Vision'
+            image: 'https://via.placeholder.com/350x200.png?text=CNN+Vision',
+            lien: 'https://github.com/example/computer-vision'
         }
     ],
     'ia-gen': [
         {
             titre: 'Chatbot IA Conversationnel',
             description: 'Assistant basé sur GPT et NLP avancé',
-            image: 'https://via.placeholder.com/350x200.png?text=Chatbot+IA'
+            image: 'https://via.placeholder.com/350x200.png?text=Chatbot+IA',
+            lien: 'https://github.com/example/chatbot'
         },
         {
             titre: 'Générateur d\'Images IA',
             description: 'Stable Diffusion pour création d\'images génératives',
-            image: 'https://via.placeholder.com/350x200.png?text=Generateur+Images'
+            image: 'https://via.placeholder.com/350x200.png?text=Generateur+Images',
+            lien: 'https://github.com/example/image-generator'
         },
         {
             titre: 'Analyse de Sentiments IA',
             description: 'NLP pour analyse des avis clients avec transformers',
-            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Sentiments'
+            image: 'https://via.placeholder.com/350x200.png?text=Analyse+Sentiments',
+            lien: 'https://github.com/example/sentiment-analysis'
         }
     ]
 };
@@ -222,6 +234,7 @@ function initTabs() {
 /**
  * Génère dynamiquement les carrousels de projets à partir du dictionnaire PROJETS
  * Cette fonction crée le HTML pour chaque carousel en bouclant sur les catégories
+ * Les cartes sont cliquables et redirigent vers le lien du projet
  */
 function generateProjectCarousels() {
     const carouselWrapper = document.querySelector('.carousel-wrapper');
@@ -237,7 +250,7 @@ function generateProjectCarousels() {
             carousel.className = categoryId === 'data-analysis' ? 'carousel active' : 'carousel';
             carousel.id = categoryId;
             
-            // Créer le conteneur des cartes
+            // Créer le conteneur des cartes (grille au lieu de carousel)
             const carouselContainer = document.createElement('div');
             carouselContainer.className = 'carousel-container';
             
@@ -245,6 +258,7 @@ function generateProjectCarousels() {
             projects.forEach(project => {
                 const projectCard = document.createElement('div');
                 projectCard.className = 'project-card';
+                projectCard.style.cursor = 'pointer';
                 projectCard.innerHTML = `
                     <div class="card-image">
                         <img src="${project.image}" alt="${project.titre}">
@@ -252,9 +266,14 @@ function generateProjectCarousels() {
                     <div class="card-body">
                         <h3>${project.titre}</h3>
                         <p>${project.description}</p>
-                        <a href="#" class="btn btn-primary">Voir le projet</a>
                     </div>
                 `;
+                
+                // Ajouter le gestionnaire de clic pour rediriger vers le lien
+                projectCard.addEventListener('click', function() {
+                    window.open(project.lien, '_blank');
+                });
+                
                 carouselContainer.appendChild(projectCard);
             });
             
