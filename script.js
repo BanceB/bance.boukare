@@ -48,6 +48,63 @@ const IDES = {
 };
 
 /**
+ * Dictionnaire des expériences professionnelles
+ * Structure: { entreprise, poste, periode, missions }
+ */
+const EXPERIENCES = {
+    '2024': [
+        {
+            entreprise: 'TechData Solutions',
+            poste: 'Data Scientist Junior',
+            periode: 'Mars 2024 - Présent',
+            missions: [
+                'Analyse et nettoyage de grandes volumes de données',
+                'Développement de modèles de prédiction avec Python',
+                'Création de dashboards interactifs avec Tableau',
+                'Collaboration avec l\'équipe backend pour API integration'
+            ]
+        },
+        {
+            entreprise: 'FinanceAI Corp',
+            poste: 'Stagiaire Data Analysis',
+            periode: 'Janvier 2024 - Février 2024',
+            missions: [
+                'Traitement des données financières en temps réel',
+                'Développement de scripts Python pour l\'ETL',
+                'Reporting automatisé sur Excel et Power BI',
+                'Documentation des processus analytiques'
+            ]
+        }
+    ],
+    '2023': [
+        {
+            entreprise: 'Digital Insights Inc',
+            poste: 'Consultant Data Junior',
+            periode: 'Juin 2023 - Décembre 2023',
+            missions: [
+                'Audit de qualité des données client',
+                'Mise en place de pipelines de traitement de données',
+                'Formation des équipes aux outils d\'analyse',
+                'Optimisation des requêtes SQL pour performance'
+            ]
+        }
+    ],
+    '2022': [
+        {
+            entreprise: 'StartupIA',
+            poste: 'Data Analyst Stagiaire',
+            periode: 'Septembre 2022 - Mai 2023',
+            missions: [
+                'Collecte et exploration de données pour les modèles ML',
+                'Création de visualisations pour les présentations',
+                'Support sur projets de machine learning',
+                'Tests de qualité et validation des modèles'
+            ]
+        }
+    ]
+};
+
+/**
  * Dictionnaire des projets par catégorie
  * Structure: { titre, description, image, lien }
  */
@@ -138,6 +195,12 @@ const PROJETS = {
  * Initialisation au chargement du DOM
  */
 document.addEventListener('DOMContentLoaded', function() {
+    // Générer le contenu des expériences
+    generateExperiencesContent();
+    
+    // Initialiser les interactions des expériences
+    initExperiences();
+    
     // Générer le contenu des onglets à partir des dictionnaires
     generateTechContent();
     
@@ -153,6 +216,102 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialiser l'animation du fond réseau de neurones
     initNeuralNetworkBackground();
 });
+
+/**
+ * ============================================================================
+ * GESTION DES EXPÉRIENCES PROFESSIONNELLES
+ * ============================================================================
+ */
+
+/**
+ * Génère dynamiquement le contenu de la section Expériences
+ * Crée les listes d'années et les cartes d'expériences
+ */
+function generateExperiencesContent() {
+    const yearsList = document.querySelector('.years-list');
+    const detailsList = document.querySelector('.details-list');
+    
+    if (!yearsList || !detailsList) return;
+    
+    // Vider le contenu existant
+    yearsList.innerHTML = '';
+    detailsList.innerHTML = '';
+    
+    // Récupérer et trier les années en ordre décroissant
+    const years = Object.keys(EXPERIENCES).sort((a, b) => b - a);
+    
+    // Générer les items années
+    years.forEach((year, index) => {
+        const yearItem = document.createElement('div');
+        yearItem.className = index === 0 ? 'year-item active' : 'year-item';
+        yearItem.textContent = year;
+        yearItem.setAttribute('data-year', year);
+        yearsList.appendChild(yearItem);
+    });
+    
+    // Générer les cartes d'expériences pour la première année
+    if (years.length > 0) {
+        const firstYear = years[0];
+        displayExperiencesForYear(firstYear);
+    }
+}
+
+/**
+ * Affiche les expériences pour une année donnée
+ */
+function displayExperiencesForYear(year) {
+    const detailsList = document.querySelector('.details-list');
+    if (!detailsList || !EXPERIENCES[year]) return;
+    
+    detailsList.innerHTML = '';
+    
+    EXPERIENCES[year].forEach(experience => {
+        const card = document.createElement('div');
+        card.className = 'experience-card';
+        
+        const missionsHTML = experience.missions
+            .map(mission => `<li>${mission}</li>`)
+            .join('');
+        
+        card.innerHTML = `
+            <div class="experience-company">
+                <i class="fas fa-building"></i>
+                ${experience.entreprise}
+            </div>
+            <div class="experience-position">${experience.poste}</div>
+            <div class="experience-period">
+                <i class="fas fa-calendar"></i> ${experience.periode}
+            </div>
+            <ul class="experience-missions">
+                ${missionsHTML}
+            </ul>
+        `;
+        
+        detailsList.appendChild(card);
+    });
+}
+
+/**
+ * Initialise les interactions de la section Expériences
+ * Gère les clics sur les années
+ */
+function initExperiences() {
+    const yearItems = document.querySelectorAll('.year-item');
+    
+    yearItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Retirer la classe active de tous les items
+            yearItems.forEach(btn => btn.classList.remove('active'));
+            
+            // Ajouter la classe active au bouton cliqué
+            this.classList.add('active');
+            
+            // Afficher les expériences de l'année sélectionnée
+            const year = this.getAttribute('data-year');
+            displayExperiencesForYear(year);
+        });
+    });
+}
 
 /**
  * ============================================================================
